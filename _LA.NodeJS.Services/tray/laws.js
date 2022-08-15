@@ -3,7 +3,7 @@ const exec = require('child_process').exec;
 
 //exec('"C:/_LA.Workstation/_LA.Workstation.Sync/node_modules/.bin/nodemon.cmd" "C:/_LA.Workstation/_LA.Workstation.Sync/server.js"')
 //import('../../_LA.Environment.Sync/main/timer.js');
-//const title = 'LA.Workstation.Sync'
+const title = 'LA.Workstation.Sync'
 
 app.whenReady().then(() => {
     const tray = new Tray('C:/_LA.Workstation/_LA.NodeJS.Services/tray/LA.ico')
@@ -22,6 +22,15 @@ app.whenReady().then(() => {
               win.loadFile('c:/_LA.Workstation/_LA.Environment.Sync/main/pages/index.html')
             }
         },
+        { label: 'LA.Git.Logs', type: 'normal', click: (evt) => {
+          const win = new BrowserWindow({
+              width: 800,
+              height: 600,
+            });
+
+            win.loadFile('c:/_LA.Workstation/_LA.Git.Sync/index.html')
+          }
+      },
       ])
       
       tray.setContextMenu(contextMenu)

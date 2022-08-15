@@ -22,5 +22,6 @@ yarn-error.log*
 /node_modules
 _LA.Workstation.Sync/node_modules
 _LA.Environment.Sync/node_modules
+_LA.Git.Sync/node_modules
 _LA.NodeJS.Services/node_modules
 _LA.NodeJS.Services/tray/node_modules
