@@ -11,3 +11,5 @@ call node uninstall.js
 
 cd c:/_LA.Workstation/_LA.Workstation.Sync
 call node uninstall.js
+
+cd c:/_LA.Workstation/

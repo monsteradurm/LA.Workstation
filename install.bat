@@ -12,11 +12,13 @@ call pm2 save
 cd c:/_LA.Workstation/_LA.Environment.Sync
 call npm install -g node-windows
 call npm install
+call npm install node-windows@1.0.0-beta.6
 call npm link node-windows
 call node install.js
 
 cd c:/_LA.Workstation/_LA.Git.Sync
 call npm install
+call npm install node-windows@1.0.0-beta.6
 call npm link node-windows
 call node install.js
 
