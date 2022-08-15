@@ -1,0 +1,25 @@
+{
+  "name": "la.nodejs.services",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "build": {
+    "asar": false
+  },
+  "scripts": {
+    "start": "pm2 start laws.js --name LA.Workstation.Sync"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@tpp/pm2": "^2.1.0",
+    "async": "^3.2.4",
+    "auto-launch": "^5.0.5",
+    "child_process": "^1.0.2",
+    "electron": "^20.0.1",
+    "fs": "^0.0.1-security",
+    "node-windows": "^1.0.0-beta.6",
+    "pm2": "^5.2.0",
+    "start-on-windows-boot": "^1.0.0"
+  }
+}

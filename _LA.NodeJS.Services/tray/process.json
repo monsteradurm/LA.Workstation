@@ -1,0 +1,7 @@
+{
+    "name": "LA.Workstation.Tray",
+    "script": "pm2-startup.js",
+    "instances"  : 1,
+    "exec_mode": "cluster",
+    "windowsHide": true
+}

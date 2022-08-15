@@ -1,0 +1,24 @@
+13:08:29 09/08/2022	Env Service --> Service Timer, 0
+13:08:77 09/08/2022	Env Service --> Iterating Over Environment Depots
+13:08:77 09/08/2022	["_Environment.Installers","_Environment.Maya.2018","_Environment.Maya.2022","_Environment.Nuke","_Environment.Resources"]
+
+13:08:20 09/08/2022	Validating Client: _Environment.Installers
+13:08:20 09/08/2022	Synchronizing: _Environment.Installers...
+13:08:66 09/08/2022	Env Service --> _Environment.Installers Synchonization Result: {"result":"_Environment.Installers is already syncronized..."}
+
+13:08:08 09/08/2022	Validating Client: _Environment.Maya.2018
+13:08:08 09/08/2022	Synchronizing: _Environment.Maya.2018...
+13:08:55 09/08/2022	Env Service --> _Environment.Maya.2018 Synchonization Result: {"result":"_Environment.Maya.2018 is already syncronized..."}
+
+13:08:03 09/08/2022	Validating Client: _Environment.Maya.2022
+13:08:03 09/08/2022	Synchronizing: _Environment.Maya.2022...
+13:08:50 09/08/2022	Env Service --> _Environment.Maya.2022 Synchonization Result: {"result":"_Environment.Maya.2022 is already syncronized..."}
+
+13:08:94 09/08/2022	Validating Client: _Environment.Nuke
+13:08:95 09/08/2022	Synchronizing: _Environment.Nuke...
+13:08:39 09/08/2022	Env Service --> _Environment.Nuke Synchonization Result: {"result":"_Environment.Nuke is already syncronized..."}
+
+13:08:82 09/08/2022	Validating Client: _Environment.Resources
+13:08:83 09/08/2022	Synchronizing: _Environment.Resources...
+13:08:27 09/08/2022	Env Service --> _Environment.Resources Synchonization Result: {"result":"_Environment.Resources is already syncronized..."}
+

@@ -1,0 +1,7 @@
+{
+    "name": "LA.NodeJS.Services",
+    "script": "start.js",
+    "instances"  : 1,
+    "exec_mode": "fork",
+    "windowsHide": true
+}
