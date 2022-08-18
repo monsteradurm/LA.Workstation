@@ -22,6 +22,9 @@ import { Changes } from './Components/Repository/Changes.component';
 import { of, switchMap, tap } from 'rxjs';
 import { Ignore } from './Components/Repository/Ignore.component';
 import { Opened } from './Components/Repository/Opened.component';
+import { DisplayWhen } from './Components/General/DisplayWhen';
+import { BusyHandler } from './Components/General/BusyHandler';
+import { Integration } from './Components/Repository/Integration.component';
 
 export const ServerOptions = [{label: 'Liquid Animation', value: 'ssl:52.147.58.109:1666'}, 
     {label: 'Walt Disney Imagineering', value: 'ssl:10.10.100.80:1666'}]
@@ -67,11 +70,12 @@ function App() {
   useEffect(() => {
     const subs = [];
 
+    /*
     subs.push(
       AppObservables.BusyMessage$.subscribe((msg) => {
         dispatch({type: 'BusyMessage', value: msg})
       })
-    )
+    )*/
 
     subs.push(
       PerforceService.Initialized$.subscribe(u => {
@@ -111,6 +115,10 @@ function App() {
     return () => subs.forEach(s => s.unsubscribe());
 
   }, []);
+  
+  if (toastRef.current && !ToastService.Toast)
+    ToastService.SetToaster(toastRef);
+
 
   if (!initialized)
     return null;
@@ -128,29 +136,33 @@ function App() {
               !state.Login ? <Login /> : null
             }
             {
-              BusyMessage ?
-              <div style={{height: 'calc(100vh - 70px)', display: !state.Login ? 'hidden' : null}}>
+              <BusyHandler message$={AppObservables.BusyMessage$}>
+                <DisplayWhen condition={!!state.Login} alt={null}>
+                  <Routes>
+                    <Route path="/" element={<Home state={state} />} />
+                    <Route path="Home" element={<Home state={state} />} />
+                    <Route path="Repositories" element={
+                        <RepositoryContext.Provider value={repoState}>
+                          <Repository repoDispatch={repoDispatch}/>
+                        </RepositoryContext.Provider>} >
+                      <Route path="Opened" element={<Opened repoDispatch={repoDispatch}/>} />
+                      <Route path="Packaging" element={<Packaging repoDispatch={repoDispatch}/>} />
+                      <Route path="Integration" element={<Integration repoDispatch={repoDispatch}/>} />
+                      <Route path="Changes" element={<Changes repoDispatch={repoDispatch}/>} />
+                      <Route path="Ignore" element={<Ignore repoDispatch={repoDispatch} />} />
+                      <Route path="Initialization" element={<Initialization repoDispatch={repoDispatch}/>} />
+                    </Route>
+                    <Route path="Users" element={<Users state={state}/>} />
+                    <Route path="Terminal" element={<Terminal />} />
+                  </Routes>
+                </DisplayWhen>
+              </BusyHandler>
+              /*
+              <div style={{height: 'calc(100vh - 70px)', display: !state.Login ? 'none' : null}}>
                 <Loading text={BusyMessage} /> 
-              </div> : null
+              </div> : null*/
             }
-            <div style={{display: !!BusyMessage || !state.Login ? 'hidden' : null}}>
-              <Routes>
-                <Route path="/" element={<Home state={state} />} />
-                <Route path="Home" element={<Home state={state} />} />
-                <Route path="Repositories" element={
-                    <RepositoryContext.Provider value={repoState}>
-                      <Repository repoDispatch={repoDispatch}/>
-                    </RepositoryContext.Provider>} >
-                  <Route path="Opened" element={<Opened repoDispatch={repoDispatch}/>} />
-                  <Route path="Packaging" element={<Packaging repoDispatch={repoDispatch}/>} />
-                  <Route path="Changes" element={<Changes repoDispatch={repoDispatch}/>} />
-                  <Route path="Ignore" element={<Ignore repoDispatch={repoDispatch} />} />
-                  <Route path="Initialization" element={<Initialization repoDispatch={repoDispatch}/>} />
-                </Route>
-                <Route path="Users" element={<Users state={state}/>} />
-                <Route path="Terminal" element={<Terminal />} />
-              </Routes>
-            </div>
+            
           </BrowserRouter>
         </ApplicationContext.Provider>
       </div>

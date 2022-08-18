@@ -1,7 +1,7 @@
 import { Stack } from "react-bootstrap"
 import { BreedingRhombusSpinner, LoopingRhombusesSpinner, SemipolarSpinner } from "react-epic-spinners"
 
-export const Loading = ({size, fontSize, text, opacity, gap, weight, color, spinner, marginTop}) => {
+export const Loading = ({size, fontSize, text, opacity, gap, weight, color, spinner, marginTop, children}) => {
     const dSize = size ? size : 100;
     const dColor = color ? color : 'gray';
     const dWeight = weight ? weight : 600;

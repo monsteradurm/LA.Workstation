@@ -39,10 +39,11 @@ export class PerforceService {
     static _Depots = new BehaviorSubject(null);
     static Depots$ = PerforceService._Depots.asObservable().pipe(shareReplay(1));
 
+    /*
     static _Clients = new BehaviorSubject(null);
     static Clients$ = PerforceService._Clients.asObservable().pipe(shareReplay(1));
-
-    /*
+    */
+    
     static Clients$ = PerforceService.Login$.pipe(
         tap(t => PerforceService.LogMessage("Service --> Retrieving All Workspaces for User: " + t.Username)),
         switchMap(login => !login ? EMPTY :
@@ -51,7 +52,7 @@ export class PerforceService {
         map(result => result.response ? result.response : null),
         tap(t => PerforceService.LogMessage("Clients -->" + t.map(o => JSON.stringify(o)).join('\n'))),
         shareReplay(1)
-    ) */
+    )
 
     static Client$ = (name) => {
         if (!name) return of(null);
@@ -73,7 +74,6 @@ export class PerforceService {
         })
     }
 
-    /*
     static Depots$ = PerforceService.Login$.pipe(
         tap(t => PerforceService.LogMessage("Service --> Retrieving All Depots for User: " + t.Username)),
         switchMap(login => !login ? EMPTY :
@@ -102,7 +102,7 @@ export class PerforceService {
         map(result => result.response ? result.response : null),
         tap(t => PerforceService.LogMessage("Groups -->\n" + t.map(o => '\t\t' + JSON.stringify(o)).join('\n'))),
         shareReplay(1)
-    )*/
+    )
     
     static Describe$ = (id) => {
         return PerforceService.Login$.pipe(
@@ -150,11 +150,11 @@ export class PerforceService {
             switchMap(login => ajax.post('/changes', { login, depot, client, type })),
             map(result => result.response ? result.response : null),
             map(response => response && response.stat ? response.stat.map(s => 
-                ({...s, time: moment.unix(s.time).format('HH:MM DD/MM/YY') })) : null),
+                ({...s, time: moment.unix(s.time).format('YY/MM/DD HH:mm') })) : null),
             take(1)
         );
     }
-    /*
+    
     static Users$ = PerforceService.Login$.pipe(
         switchMap(login => !login ? EMPTY :
             ajax.post('/users', { login })),
@@ -170,7 +170,7 @@ export class PerforceService {
         tap(t => PerforceService.LogMessage("Users -->" + t.map(o => JSON.stringify(o)).join('\n'))),
         
         shareReplay(1)
-    )*/
+    )
 
     static Where = (mapping, clients) => {
         if (clients.length < 1) return of(null);
@@ -178,6 +178,7 @@ export class PerforceService {
         return PerforceService.Login$.pipe(
             switchMap(login => from(clients).pipe(
                 concatMap(c => ajax.post('/where', {map: mapping, login, client: c.client}).pipe(
+                    tap(console.log(c)),
                     map(result => result.response),
                     map(response => response.error ? null: 
                         { ...response.stat[0], client: c }),
@@ -309,24 +310,43 @@ export class PerforceService {
         PerforceService._Login.next(params)
     }
 
-    static PackagePaths = (filename) => {
-        return PerforceService.PackagePaths(filename).pipe(
-            (result => result.data),
-            tap(console.log),
+    static PathExists$ = (path) => {
+        return ajax.post('/path-exists', {path}).pipe(
+            map(result => result?.response?.exists ? result.response.exists : false),
+            map(exists => exists ? exists : null),
+            take(1)
+        )
+    }
+    static PackagePaths$ = (filename) => {
+        return PerforceService.ReadFile(filename).pipe(
+            map(result => { 
+                if (result.error) {
+                    console.log(filename, result.error);
+                    return [];
+                }
+                try {
+                    const data = JSON.parse(result.data);
+                    if (!Array.isArray(data))
+                        throw 'Package Path Is not Array!';
+
+                    return data;
+                } catch {
+                    ToastService.SendError("Error Parsing Package Path");
+                    return [];
+                }
+            }),
             concatMap(options => from(options.filter(o => !!o.Path)).pipe(
-                tap(console.log),
                     switchMap(option => ajax.post('/path-exists', {path: option.Path}).pipe(
                             map(result => result?.response?.exists ? result.response.exists : false),
-                            map(exists => exists ? option : null)
+                            map(exists => exists ? option : null),
                         )
                     )
                 )
             ),
-            tap(console.log),
             toArray(),
-            tap(console.log),
             take(1),
-            catchError(err => of(null))
+            catchError(err => of(null)),
+            shareReplay(1)
         )
     }
 
@@ -336,6 +356,56 @@ export class PerforceService {
         )
     }
 
+    static PackageFiles$ = (files, project, base) => {
+        return PerforceService.Login$.pipe(
+            switchMap( login => ajax.post('/package', {login, files, project, base})),
+            map(result => result.response),
+            map(res => {
+                if (res.result) {
+                    ToastService.SendSuccess('Packaged ' + res.result.length + ' Files.');
+                    return res;
+                }
+
+                ToastService.SendError("There was an issue packaging selected files.");
+                return null;
+            }),
+            take(1)
+        )
+    }
+
+    static IntegrateFiles$ = (files, project, src, dest) => {
+        return PerforceService.Login$.pipe(
+            switchMap( login => ajax.post('/integrate', {login, files, project, src, dest})),
+            map(result => result.response),
+            map(res => {
+                if (res.result) {
+                    ToastService.SendSuccess('Integrated ' + res.result.length + ' Files.');
+                    return res;
+                }
+
+                ToastService.SendError("There was an issue packaging selected files.");
+                return null;
+            }),
+            take(1)
+        )
+    }
+
+    static IntegrationTree$ = (src, dest) => {
+        console.log("CALLING INTEGRATION TREE$");
+        return ajax.post('/integration-tree', {src, dest}).pipe(
+            map(result => result.response),
+            tap(t => console.log("Integration Listing: ", t)),
+            take(1)
+        )
+    }
+
+    static DirectoryTree$ = (root) => {
+        return ajax.post('/dir-tree', {root}).pipe(
+            map(result => result.response),
+            tap(t => console.log("LISTING: ", t)),
+            take(1)
+        )
+    }
     static ExplorePath = (path) => {
         return ajax.post('/explore', {path}).pipe(
             take(1)
@@ -405,7 +475,7 @@ export class PerforceService {
         )
     }
 }
-
+/*
 PerforceService.Login$.subscribe(login => {
     if (login) {
         ajax.post('/initialize-user', {login})
@@ -425,7 +495,8 @@ PerforceService.Login$.subscribe(login => {
         PerforceService._Groups.next(null);
         PerforceService._Users.next(null);
     }
-});
+});*/
+
 PerforceService.LastLogin$.pipe(take(1)).subscribe(last => {
     if (last) {
         const server = last.Last;

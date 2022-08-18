@@ -1,6 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-/.log
+_LA.Environment.Sync.log
+_LA.Git.Sync.log
+_LA.Workstation.Sync.log
 /.pnp
 .pnp.js
 

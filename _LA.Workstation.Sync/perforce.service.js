@@ -43,6 +43,8 @@ export class PerforceService {
     static async Where(login, map, client) {
         const p4 = await PerforceService.Connection(login);
         await p4.cmd("set P4CLIENT=" + client);
+        console.log(client);
+        console.log(map);
         return await p4.cmd("where //" + map + "/...")
     }
 
@@ -73,7 +75,7 @@ export class PerforceService {
         const depotsResult = await p4.cmd("depots");
         const groupsResult = await p4.cmd("groups -u " + login.Username);
         const usersResult = await p4.cmd("users");
-        return { Clients: clientsResult.stat.filter(c => c.Host === login.Host), 
+        return { Clients: clientsResult.stat, //.filter(c => c.Host === login.Host), 
                  Depots: depotsResult.stat, 
                  Groups: groupsResult.stat, 
                  Users: usersResult.stat };

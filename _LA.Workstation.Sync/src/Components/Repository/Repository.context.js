@@ -12,7 +12,7 @@ export const RepositoryState = {
     IgnoreFile: null,
     ConfigFile: null,
     PackagingOptions: null,
-    IntegrationOptions: null,
+    IntegrationPath: null,
     BusyMessage : null
 }
 
@@ -23,7 +23,20 @@ export class RepositoryObservables {
     static DepotId$ = RepositoryObservables._DepotId.asObservable();
 
     static _ClientId = new BehaviorSubject(null);
-    static ClientId$ = RepositoryObservables._ClientId.asObservable();
+    static _ClientId$ = RepositoryObservables._ClientId.asObservable();
+    static ClientId$ = combineLatest([
+        RepositoryObservables._ClientId$, RepositoryObservables.DepotId$, PerforceService.Login$
+    ]).pipe(
+        map(([clientId, depotId, login]) => {
+            if (clientId) return clientId;
+
+            if (!depotId || !login)
+                return null;
+
+            const id = depotId.indexOf('.') > -1 ? depotId.split('.')[0] : depotId
+            return `${login.Username}.${login.Host}.${id}`
+        }),
+    )
 
     static _BusyMessages = new BehaviorSubject([]);
     static BusyMessages$ = RepositoryObservables._BusyMessages.asObservable();
@@ -46,11 +59,13 @@ export class RepositoryObservables {
     ).pipe(
         switchMap(([clients, depot]) => !!clients && clients.length > 0 && depot ? 
             of([clients, depot]) : EMPTY),
+        tap(t => console.log("WHERE!", t)),
         switchMap(([clients, depot]) => {
             const id = depot.name.split('.')[0];
             const rel_clients = clients.filter(c => c.client.indexOf(id) >= 0);
 
-            if (RepositoryObservables.Page.indexOf('Initialization') >= 0)
+            if (RepositoryObservables.Page.indexOf('Initialization') > -1||
+                RepositoryObservables.Page.indexOf('Packaging') > -1)
                 RepositoryObservables.AddBusyMessage("get-where", `Searching for Depot Location: //${depot.name}/...`);
 
             return PerforceService.Where(depot.map, rel_clients).pipe(take(1)).pipe(
@@ -66,8 +81,22 @@ export class RepositoryObservables {
         shareReplay(1)
     )
 
-    static Client$ = RepositoryObservables.Where$.pipe(
-        map(where => where ? where.client : EMPTY ),
+    static Client$ = combineLatest([
+        PerforceService.Clients$, RepositoryObservables.ClientId$, 
+    ]).pipe(
+        switchMap(([clients, clientId, where]) => {
+            if (!clientId || !clients)
+                return EMPTY
+
+            console.log(clients);
+            const client = _.find(clients, (c) => c.client === clientId)
+            if (client)
+                return of(client);
+            
+            return RepositoryObservables.Where$.pipe(
+                switchMap(where => where ? where.client : EMPTY )
+            )
+        }),
         shareReplay(1)
     )
      
@@ -77,6 +106,7 @@ export class RepositoryObservables {
                 AppObservables.AddBusyMessage('get-view', "Retrieving Workspace View...")
         }),
         switchMap(client => !client ? EMPTY : of(client) ),
+        tap(console.log),
         switchMap(client => {
             const hasViews = Object.keys(client)
                 .filter(attr => attr.startsWith('View')).length > 0;
@@ -84,6 +114,7 @@ export class RepositoryObservables {
             return hasViews ? of(client) :
                 PerforceService.Client$(client.client)
         }),
+        tap(console.log),
         map(client => client ? Object.keys(client).reduce(
             (acc, attr) => {
                 if (attr.indexOf('View') !== 0)
@@ -97,22 +128,78 @@ export class RepositoryObservables {
                 return acc;
             }, []) : null
         ),
+        tap(console.log),
         tap(t => AppObservables.RemoveBusyMessage('get-view')),
         shareReplay(1)
     )
 
     static ConfigFile$ = RepositoryObservables.Client$.pipe(
-        tap(t => {
-            if (t && RepositoryObservables.Page.indexOf('Initialization') >= 0)
-                RepositoryObservables.AddBusyMessage("get-config", "Retrieving Config...");
-        }),
-        switchMap(client => !client ? of(null) : 
+        switchMap(client => !client ? EMPTY : 
             PerforceService.Config$(client.client, client.Root).pipe(
                 take(1),
                 map(res => res?.config ? res.config : null)
             )
         ),
-        tap(t => RepositoryObservables.RemoveBusyMessage("get-config")),
+        shareReplay(1),
+    )
+
+    static PackagingFile$ = combineLatest(
+        [RepositoryObservables.Client$, RepositoryObservables.Where$]
+    ).pipe(
+        map(([client, where]) => {
+            if (!client || !where) return of(null);
+
+            return where.path.replace('\\...', '')
+                .replace('\\...', '')
+                .replace(/\\/g, "/")
+                + '/.packagingPaths.txt';
+        }),
+        shareReplay(1)
+    )
+
+    static IntegrationFile$ = combineLatest(
+        [RepositoryObservables.Client$, RepositoryObservables.Where$]
+    ).pipe(
+        map(([client, where]) => {
+            if (!client || !where) return of(null);
+
+            return where.path.replace('\\...', '')
+                .replace('\\...', '')
+                .replace(/\\/g, "/")
+                + '/.integrationPath.txt';
+        }),
+        shareReplay(1)
+    )
+
+    static IntegrationPath$ = RepositoryObservables.IntegrationFile$.pipe(
+        tap(t => console.log("Integration FILE", t)),
+        switchMap(fn => fn ? of(fn) : EMPTY),
+        switchMap(fn => {
+            if (RepositoryObservables.Page.indexOf('Integration') >= 0)
+                RepositoryObservables.AddBusyMessage("get-integration", "Retrieving Integration Path...");
+
+            return PerforceService.ReadFile(fn).pipe(
+                    take(1),
+                    map(res => res && res.data ? res.data : null)
+                )
+        }),
+        tap(t => RepositoryObservables.RemoveBusyMessage("get-integration")),
+        shareReplay(1)
+    )
+
+    static PackagingOptions$ = RepositoryObservables.PackagingFile$.pipe(
+        tap(t => console.log("PACKAGING FILE", t)),
+        switchMap(fn => fn ? of(fn) : EMPTY),
+        switchMap(fn => {
+            if (RepositoryObservables.Page.indexOf('Packaging') >= 0)
+                RepositoryObservables.AddBusyMessage("get-packaging", "Retrieving Export Paths...");
+
+            return PerforceService.PackagePaths$(fn).pipe(
+                    take(1),
+                    map(res => res ? res : null)
+                )
+        }),
+        tap(t => RepositoryObservables.RemoveBusyMessage("get-packaging")),
         shareReplay(1)
     )
 
@@ -125,7 +212,7 @@ export class RepositoryObservables {
             if (RepositoryObservables.Page.indexOf('Initialization') >= 0 ||
                 RepositoryObservables.Page.indexOf('Ignore') >= 0)
                 RepositoryObservables.AddBusyMessage("get-ignore", "Retrieving Ignore...");
-                
+
             const root = where.path.replace('\\...', '')
                 .replace('\\...', '')
                 .replace(/\\/g, "/")
@@ -162,7 +249,7 @@ export class RepositoryObservables {
 
 
 export const DispatchRepositoryState = (state, action) => {
-    //console.log("Repo Action: ", action)
+    console.log("Repo Action: ", action)
     switch(action.type) {
         case 'Page': {
             RepositoryObservables.Page = action.value;
@@ -213,6 +300,11 @@ export const DispatchRepositoryState = (state, action) => {
                 ConfigFile: action.value
             }
 
+        case 'PackagingFile':
+            return { ...state,
+                PackagingFile: action.value
+            }
+
         case 'BusyMessage' : 
             return { ...state, 
                 BusyMessage: action.value
@@ -222,9 +314,9 @@ export const DispatchRepositoryState = (state, action) => {
                 PackagingOptions: action.value
             }
 
-        case 'IntegrationOptions' : 
+        case 'IntegrationPath' : 
             return { ...state, 
-                IntegrationOptions: action.value
+                IntegrationPath: action.value
             }
 
         default: {

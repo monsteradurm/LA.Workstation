@@ -18,6 +18,7 @@ const WORKSPACE_GROUPS = {
     'LADJ' : 'LADJ_DisneyJapan',
     'LADAUS' : 'LADUS_DisneyAustralia',
     'LAU' : 'LAU_Universal',
+    'LAIU' : 'LAIU_InvisibleUniverse',
     'LASC' : 'LASC_SnapChat',
     'LAT' : 'LAT_Technical',
     'Resources' : 'Resources',
@@ -123,10 +124,6 @@ export const NavigationComponent = ({state, servername}) => {
         setDepotMenu(result);
 
     }, [state.Depots])
-
-    useEffect(() => {
-        console.log("DEPOT MENU", depotMenu)
-    }, [depotMenu]);
     
     useEffect(() => {
         const subs = [];
@@ -147,17 +144,22 @@ export const NavigationComponent = ({state, servername}) => {
                     LA Workstation Sync
                 </Navbar.Brand>
                 <div className="ms-auto"></div>
-                <Button icon="pi pi-home" className="laws-navbutton" 
-                    onClick={(evt) => navigateTo(null, "/Home")}/>
-                <Button icon="pi pi-list" className="laws-navbutton"
-                    onClick={(evt) => depotMenuRef.current.toggle(evt)}/>
-                <Button icon="pi pi-user" className="laws-navbutton"
-                    onClick={(evt) => navigateTo(null, "/Users")}/>
-                <Button icon="pi pi-code" className="laws-navbutton"
-                    onClick={(evt) => navigateTo(null, "/Terminal")}/>
-                <Button icon="pi pi-question-circle" className="laws-navbutton"
-                    onClick={(evt) => navigateTab(
-                    "https://liquidanimation.atlassian.net/wiki/spaces/LAT0003/pages/498761729/Repositories")}/>
+                {
+                    depotMenu && depotMenu.length > 0 ?
+                <>
+                    <Button icon="pi pi-home" className="laws-navbutton" 
+                        onClick={(evt) => navigateTo(null, "/Home")}/>
+                    <Button icon="pi pi-list" className="laws-navbutton"
+                        onClick={(evt) => depotMenuRef.current.toggle(evt)}/>
+                    <Button icon="pi pi-user" className="laws-navbutton"
+                        onClick={(evt) => navigateTo(null, "/Users")}/>
+                    <Button icon="pi pi-code" className="laws-navbutton"
+                        onClick={(evt) => navigateTo(null, "/Terminal")}/>
+                    <Button icon="pi pi-question-circle" className="laws-navbutton"
+                        onClick={(evt) => navigateTab(
+                        "https://liquidanimation.atlassian.net/wiki/spaces/LAT0003/pages/498761729/Repositories")}/>
+                </> : null
+                }
                 <div className="ms-auto"></div>
                 <Navbar.Brand href="#home" 
                     style={{color:"white", textAlign:"right", fontSize: 16, marginRight:0}}>

@@ -8,6 +8,9 @@ import * as _ from 'underscore';
 import { ApplicationContext, RepositoryContext } from "../../App";
 import { RepositoryObservables } from "./Repository.context";
 import { Loading } from "../General/Loading";
+import { DisplayWhen } from "../General/DisplayWhen";
+import { NavigationService } from "../../Services/Navigation.service";
+import { BusyHandler } from "../General/BusyHandler";
 
 export const Repository = ({repoDispatch}) => {
     const appState = useContext(ApplicationContext);
@@ -36,21 +39,31 @@ export const Repository = ({repoDispatch}) => {
     }
 
     useEffect(() => {
-        RepositoryObservables.SetDepotId(searchParams.get('name'));
-    }, [searchParams]);
+        if (RepositoryObservables.Page !== location.pathname)
+            repoDispatch({type: 'Page', value: location.pathname})
 
-    useEffect(() => {
-        repoDispatch({type: 'Page', value: location})
-    }, [location]);
+        const titles = location.pathname.split('/');
+        titles.shift();
+
+        const depotId = searchParams.get('name');
+        
+        if (DepotId !== depotId)
+            RepositoryObservables.SetDepotId(depotId);
+        
+        if (DepotId)
+            titles.push(DepotId);
+
+        NavigationService.SetTitles(titles);
+    }, [location, DepotId, searchParams]);
     
     useEffect(() => {
         const subs = [];
-        
+        /*
         subs.push(
             RepositoryObservables.BusyMessage$.subscribe((msg) => {
                 repoDispatch({type: 'BusyMessage', value: msg})
             })
-        );
+        );*/
 
         subs.push(
             RepositoryObservables.DepotId$.subscribe((id) => {
@@ -94,6 +107,23 @@ export const Repository = ({repoDispatch}) => {
             })
         );
 
+        subs.push(
+            RepositoryObservables.PackagingFile$.subscribe((w) => {
+                repoDispatch({type: 'PackagingFile', value: w})
+            })
+        );
+
+        subs.push(
+            RepositoryObservables.PackagingOptions$.subscribe((w) => {
+                repoDispatch({type: 'PackagingOptions', value: w})
+            })
+        );
+
+        subs.push(
+            RepositoryObservables.IntegrationPath$.subscribe((w) => {
+                repoDispatch({type: 'IntegrationPath', value: w})
+            })
+        );
         return () => subs.forEach(s => s.unsubscribe());
     }, [])
     useEffect(() => {
@@ -184,10 +214,9 @@ export const Repository = ({repoDispatch}) => {
         </>: null
     }
         <ScrollingPage>
-            { BusyMessage ? <Loading text={BusyMessage} /> : null }
-            <div style={{display: BusyMessage ? 'hidden' : null}}>
+            <BusyHandler message$={RepositoryObservables.BusyMessage$}>
                 <Outlet />
-            </div>
+            </BusyHandler>
         </ScrollingPage>
     </>)
 }
