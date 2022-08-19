@@ -1,6 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 _LA.Environment.Sync.log
+/_LA.Environment.Sync/main/daemon/laenvironmentsync.out.log.
 _LA.Git.Sync.log
 _LA.Workstation.Sync.log
 /.pnp
@@ -27,3 +28,9 @@ _LA.Environment.Sync/node_modules
 _LA.Git.Sync/node_modules
 _LA.NodeJS.Services/node_modules
 _LA.NodeJS.Services/tray/node_modules
+
+/daemon
+/_LA.Environment.Sync/daemon
+/_LA.Workstation.Sync/daemon
+/_LA.Git.Sync/daemon
+/_LA.NodeJS.Services/daemon
