@@ -6,108 +6,67 @@ import fs from "fs";
 import * as _ from 'underscore';
 import moment from 'moment';
 
-export const ReadLastLogin = () => {
-    const fn = "C:\\_LA.Repositories\\connection.json";
-    let rawdata = {}
-
-    if (fs.existsSync(fn)) {
-        try {
-            rawdata = JSON.parse(fs.readFileSync(fn));
-        } catch { }
-        
-    }
-
-    return rawdata;
-}
-
 export const LAREPO = 'ssl:52.147.58.109:1666';
 export const ENVIRONMENT_ROOT = "C:/_LA.Repositories/_Environment";
-
+export const ENVIRONMENT_LOGIN = {
+    Server: LAREPO,
+    Username: 'liquid-perforce',
+    Password: 'Goodbyemoonmen!',
+    Host: os.hostname()
+}
+export const ENVIRONMENT_CLIENT = `${ENVIRONMENT_LOGIN.Username}.${ENVIRONMENT_LOGIN.Host}._Environment`;
 export class EnvironmentService {  
-    static LastLogin$ = of(os.userInfo()['username']).pipe(
-        map((user) => {
-            if (user === 'SYSTEM')
-            {
-                const details = ReadLastLogin();
-                if (!details) return CURRENTUSER;
-
-                return Object.keys(details)[0];
-            }
-            return user;
-        }),
-        switchMap((CURRENTUSER) => {
-            const details = ReadLastLogin();
-            if (!details || !details[CURRENTUSER]) {
-                console.log("Warning, User has not logged into this workstation! (ever)")
-                return EMPTY
-            } else {
-                let user = details[CURRENTUSER];
-                if (!user[LAREPO]) {
-                    console.log("Warning, User has not logged into this workstation! (ever)")
-                    return EMPTY;
-                }
-                return of(user[LAREPO])
-            }
-        }),
+    
+    static LastLogin$ = from(PerforceService.Login()).pipe(
+        tap(t => console.log("LOGIN RESULT: " + JSON.stringify(t))),
         shareReplay(1),
     )
 
-    static InitializeEnvironmentClient$ = EnvironmentService.LastLogin$.pipe(
-        switchMap(login => login ? of(login) : EMPTY),
-        switchMap(login => from(PerforceService.UpsertClient(login, 
-            `Client: ${EnvironmentService.ClientName(login)}\n` +
+    static InitializeEnvironmentClient$ = from(PerforceService.UpsertClient(
+            `Client: ${ENVIRONMENT_CLIENT}\n` +
             `Root: \t${ENVIRONMENT_ROOT}\n` + 
-            `Owner: ${login.Username}\n` +
-            `Host: \t${login.Host}\n`)
-            ).pipe(
-                switchMap(() => 
-                    PerforceService.Client(login, `${login.Username}.${login.Host}._Environment`))
-            )
-        ),
-    )
-
-    static Client$ = EnvironmentService.LastLogin$.pipe(
-        switchMap(login => from(PerforceService.Client(login, 
-                `${login.Username}.${login.Host}._Environment`)
-                ).pipe(
-                    switchMap(client => client ? 
-                        of(client) : EnvironmentService.InitializeEnvironmentClient$
-                    ),
-                    map( result => result.stat[0])
-                )
+            `Owner: ${ENVIRONMENT_LOGIN.Username}\n` +
+            `Host: \t${ENVIRONMENT_LOGIN.Host}\n`)
+        ).pipe(
+            switchMap(() => 
+                PerforceService.Client(ENVIRONMENT_CLIENT).pipe(take(1))),
+            take(1)
         )
+
+    static Client$ = from(PerforceService.Client(ENVIRONMENT_CLIENT)).pipe(
+            switchMap(client => client ? 
+                of(client) : EnvironmentService.InitializeEnvironmentClient$
+            ),
+            map( result => result.stat[0]),
+        )
+
+    static Environments$ = from(PerforceService.Depots()).pipe(
+        tap(t => console.log("Environments (depots):" + JSON.stringify(t))),
+        map(result => _.pluck(result.stat, 'name')),
+        tap(t => console.log("Environments (names):" + JSON.stringify(t))),
+        map(depots => _.filter(depots, d => d.indexOf('_Environment') === 0)),
+        take(1)
     )
 
-    static Environments$ = EnvironmentService.LastLogin$.pipe(
-            switchMap(login => from(PerforceService.Depots(login)).pipe(
-                map(result => _.pluck(result.stat, 'name')),
-                map(depots => _.filter(depots, d => d.indexOf('_Environment') === 0)),
-            )
-        ),
-        take(1)
-    );
-
-    static UpsertClient = (login, views) => {
+    static UpsertClient = (views) => {
         console.log("UPSERTING CLIENT");
-        let config = `Client: ${EnvironmentService.ClientName(login)}\n` +
+        let config = `Client: ${ENVIRONMENT_CLIENT}\n` +
         `Root: \t${ENVIRONMENT_ROOT}\n` + 
-        `Owner: ${login.Username}\n` +
-        `Host: \t${login.Host}\n`;
+        `Owner: ${ENVIRONMENT_LOGIN.Username}\n` +
+        `Host: \t${ENVIRONMENT_LOGIN.Host}\n`;
 
         if (views && views.length > 0) {
             config += 'View:\n'
             views.forEach(v => config += '\t' + v + '\n')
         }
 
-        return from(PerforceService.UpsertClient(login, config)).pipe(
+        return from(PerforceService.UpsertClient(config)).pipe(
             switchMap(result => 
-                PerforceService.Client(login, EnvironmentService.ClientName(login)))
+                PerforceService.Client(ENVIRONMENT_CLIENT))
         )
     }
     
-    static ClientName = (login) => {
-        return `Client: ${login.Username}.${login.Host}._Environment`;
-    }
+    
     static GetViews(client) {
         return _.uniq(Object.keys(client).filter(a => a.indexOf('View') === 0).map(
             a => client[a]
@@ -115,8 +74,8 @@ export class EnvironmentService {
     }
 
     static ValidateClient$(client, env) {
-        console.log("Validating Client: " + env)
         const views = EnvironmentService.GetViews(client);
+        console.log("VIEWS: " + JSON.stringify(views));
         const root = ENVIRONMENT_ROOT + "/" + env;
 
         if (!fs.existsSync(root)) {
@@ -124,36 +83,37 @@ export class EnvironmentService {
             fs.mkdirSync(root)
         }
 
-        const mapping = '//' + env + '/... ' + '//' + client.Client + '/' + env + '/...';
+        const mapping = '//' + env + '/... ' + '//' + ENVIRONMENT_CLIENT + '/' + env + '/...';
 
+        
         if (views.indexOf(mapping) < 0) {
             console.log("Adding View to Client: " + mapping);
             views.push(mapping);
-            return EnvironmentService.LastLogin$.pipe(
-                switchMap(login => EnvironmentService.UpsertClient(login, views)).pipe(
-                    map(result => result.stat[0])
-                ),
-            );
+            return EnvironmentService.UpsertClient(views).pipe(
+                    map(result => result.stat[0]),
+                    take(1)
+            )
+        } else {
+            console.log("VIEW IS ALREADY MAPPED");
         }
 
         return of(client);
         
     }
-    static SynchronizeEnvironment$ = (client, env) => {
+    static SynchronizeEnvironment$ = (env) => {
         console.log("Synchronizing: " + env + '...');
         const depotPath = '//' + env + '/... ';
-        const clientPath = '//' + client.Client + '/' + env + '/...';
+        const clientPath = '//' + ENVIRONMENT_CLIENT + '/' + env + '/...';
 
-        return EnvironmentService.LastLogin$.pipe(
-        switchMap(login => 
-                from(PerforceService.Sync(login, client.Client, depotPath, clientPath)).pipe(
-                    map(result => result.error && result.error.filter(e => e.data.indexOf('up-to-date') > -1).length > 0 ?
-                        { result: env + ' is already syncronized...'} : result),
-                    tap(result => console.log("Env Service --> " + env 
-                    + " Synchonization Result: " + JSON.stringify(result) + "\n"))
-                )
-            )
+        return from(
+                PerforceService.Sync(ENVIRONMENT_CLIENT, depotPath, clientPath)
+        ).pipe(
+            map(result => result.error && result.error.filter(e => e.data.indexOf('up-to-date') > -1).length > 0 ?
+                { result: env + ' is already syncronized...'} : result),
+            tap(result => console.log("Env Service --> " + env 
+            + " Synchonization Result: " + JSON.stringify(result) + "\n"))
         )
+
     }
 
     static Synchronize$ = EnvironmentService.Environments$.pipe(
@@ -165,7 +125,7 @@ export class EnvironmentService {
                         switchMap(client => 
                             EnvironmentService.ValidateClient$(client, env).pipe(
                                 switchMap(client => 
-                                    EnvironmentService.SynchronizeEnvironment$(client, env))
+                                    EnvironmentService.SynchronizeEnvironment$(env))
                             )
                         )
                     )
