@@ -53,7 +53,8 @@ export class EnvironmentService {
         let config = `Client: ${ENVIRONMENT_CLIENT}\n` +
         `Root: \t${ENVIRONMENT_ROOT}\n` + 
         `Owner: ${ENVIRONMENT_LOGIN.Username}\n` +
-        `Host: \t${ENVIRONMENT_LOGIN.Host}\n`;
+        `Host: \t${ENVIRONMENT_LOGIN.Host}\n` +
+        'Options:   noallwrite clobber nocompress unlocked nomodtime normdir\n\n';
 
         if (views && views.length > 0) {
             config += 'View:\n'

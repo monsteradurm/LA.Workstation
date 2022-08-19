@@ -124,7 +124,6 @@ export class PerforceService {
         console.log('p4 client -i < ' + config);
 
         const result = await p4.rawCmd('client -i ', config);
-        console.log("UPSERT RESULT: " + JSON.stringify(result));
     }
 
 }
