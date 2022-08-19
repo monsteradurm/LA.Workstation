@@ -1,0 +1,17 @@
+TypeError: Assignment to constant variable.
+    at file:///C:/_LA.Workstation/_LA.Workstation.Sync/server.js:440:17
+    at Layer.handle [as handle_request] (C:\_LA.Workstation\_LA.Workstation.Sync\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\_LA.Workstation\_LA.Workstation.Sync\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\_LA.Workstation\_LA.Workstation.Sync\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\_LA.Workstation\_LA.Workstation.Sync\node_modules\express\lib\router\layer.js:95:5)
+    at C:\_LA.Workstation\_LA.Workstation.Sync\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\_LA.Workstation\_LA.Workstation.Sync\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\_LA.Workstation\_LA.Workstation.Sync\node_modules\express\lib\router\index.js:280:10)
+    at serveStatic (C:\_LA.Workstation\_LA.Workstation.Sync\node_modules\serve-static\index.js:75:16)
+    at Layer.handle [as handle_request] (C:\_LA.Workstation\_LA.Workstation.Sync\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\_LA.Workstation\_LA.Workstation.Sync\node_modules\express\lib\router\index.js:328:13)
+    at C:\_LA.Workstation\_LA.Workstation.Sync\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (C:\_LA.Workstation\_LA.Workstation.Sync\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\_LA.Workstation\_LA.Workstation.Sync\node_modules\express\lib\router\index.js:280:10)
+    at C:\_LA.Workstation\_LA.Workstation.Sync\node_modules\body-parser\lib\read.js:137:5
+    at AsyncResource.runInAsyncScope (node:async_hooks:199:9)

@@ -45,10 +45,9 @@ export class PerforceService {
     */
     
     static Clients$ = PerforceService.Login$.pipe(
-        tap(t => PerforceService.LogMessage("Service --> Retrieving All Workspaces for User: " + t.Username)),
         switchMap(login => !login ? EMPTY :
             ajax.post('/clients', { login })),
-
+        tap(t => PerforceService.LogMessage("Service --> Retrieving All Workspaces for User: " + t.Username)),
         map(result => result.response ? result.response : null),
         tap(t => PerforceService.LogMessage("Clients -->" + t.map(o => JSON.stringify(o)).join('\n'))),
         shareReplay(1)
@@ -75,10 +74,9 @@ export class PerforceService {
     }
 
     static Depots$ = PerforceService.Login$.pipe(
-        tap(t => PerforceService.LogMessage("Service --> Retrieving All Depots for User: " + t.Username)),
         switchMap(login => !login ? EMPTY :
             ajax.post('/depots', { login })),
-
+        tap(t => PerforceService.LogMessage("Service --> Retrieving All Depots for User: " + t.Username)),
         map(result => result.response ? 
             _.filter(result.response, d => d.name.indexOf('.') >= 0) 
             : null),
@@ -95,10 +93,10 @@ export class PerforceService {
     )
 
     static Groups$ = PerforceService.Login$.pipe(
-        tap(t => PerforceService.LogMessage("Service --> Retrieving All Groups for User: " + t.Username)),
+        
         switchMap(login => !login ? EMPTY :
             ajax.post('/groups', { login })),
-
+        tap(t => PerforceService.LogMessage("Service --> Retrieving All Groups for User: " + t.Username)),
         map(result => result.response ? result.response : null),
         tap(t => PerforceService.LogMessage("Groups -->\n" + t.map(o => '\t\t' + JSON.stringify(o)).join('\n'))),
         shareReplay(1)
@@ -440,7 +438,11 @@ export class PerforceService {
     }
 
     static SignOut = () => {
-        ajax.post('/logout', {}).pipe(
+        PerforceService.Login$.pipe(
+            switchMap(login => ajax.post('/logout', {login}).pipe(
+                take(1)
+            )
+        ),
             take(1)
         ).subscribe((result) => {
             if (result.status === 200) {
@@ -498,6 +500,7 @@ PerforceService.Login$.subscribe(login => {
 });*/
 
 PerforceService.LastLogin$.pipe(take(1)).subscribe(last => {
+    console.log("LAST", last)
     if (last) {
         const server = last.Last;
         if (last[server]) {

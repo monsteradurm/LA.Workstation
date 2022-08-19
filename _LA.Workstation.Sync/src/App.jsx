@@ -116,8 +116,7 @@ function App() {
 
   }, []);
   
-  if (toastRef.current && !ToastService.Toast)
-    ToastService.SetToaster(toastRef);
+  ToastService.SetToaster(toastRef);
 
 
   if (!initialized)
@@ -133,9 +132,7 @@ function App() {
             <Tooltip target=".laws-tooltip" />
             <Toast ref={toastRef} position="top-right"></Toast>
             {
-              !state.Login ? <Login /> : null
-            }
-            {
+              !state.Login ? <Login /> : 
               <BusyHandler message$={AppObservables.BusyMessage$}>
                 <DisplayWhen condition={!!state.Login} alt={null}>
                   <Routes>

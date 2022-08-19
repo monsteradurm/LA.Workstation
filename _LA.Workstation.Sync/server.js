@@ -186,11 +186,11 @@ app.post('/login', (req, res) => {
     PerforceService.Login(addr, user, password).then((result) => {
     
         const details = ReadLastLogin();
-        if (!details[CURRENTUSER])
-            details[CURRENTUSER] = {};
+        if (!details)
+            details = {};
         
-        details[CURRENTUSER][addr] = {Server: addr, Username: user, Password: password, Host: HOST}; 
-        details[CURRENTUSER]['Last'] = addr;
+        details[addr] = {Server: addr, Username: user, Password: password, Host: HOST}; 
+        details['Last'] = addr;
 
         WriteLastLogin(details);
         res.send({Server: addr, Username: user, Password: password, Host: HOST});
@@ -424,20 +424,21 @@ app.post('/describe', (req, res) => {
 app.get('/lastlogin', (req, res) => {
     console.log("LAWS --> Retrieving login cache...")
     const details = ReadLastLogin();
-    if (!details || !details[CURRENTUSER]) {
+    if (!details) {
         res.send(null);
     } else {
-        res.send(details[CURRENTUSER]);
+        res.send(details);
     }
 });
 
 app.post('/logout', (req, res) => {
+    const login = req.body.login;
     const details = ReadLastLogin();
-    if (!details || !details[CURRENTUSER]) {
+    if (!details) {
         res.sendStatus(200);
     }
     else {
-        details[CURRENTUSER] = null;
+        details[login.Server] = null;
         WriteLastLogin(details);
         res.sendStatus(200);
     }

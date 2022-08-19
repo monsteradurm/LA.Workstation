@@ -1,0 +1,152 @@
+15:08:45 19/08/2022	LA-WS --> listening at: 4000
+15:08:45 19/08/2022	LA-WS --> Logged in as: SYSTEM, DESKTOP-P2BD4IN
+15:08:50 19/08/2022	LAWS --> Retrieving login cache...
+15:08:47 19/08/2022	LAWS --> Retrieving login cache...
+15:08:76 19/08/2022	LAWS --> Retrieving login cache...
+15:08:70 19/08/2022	LA-WS --> listening at: 4000
+15:08:70 19/08/2022	LA-WS --> Logged in as: SYSTEM, DESKTOP-P2BD4IN
+15:08:09 19/08/2022	LAWS --> Retrieving login cache...
+16:08:54 19/08/2022	LA-WS --> listening at: 4000
+16:08:54 19/08/2022	LA-WS --> Logged in as: SYSTEM, DESKTOP-P2BD4IN
+16:08:61 19/08/2022	LAWS --> Retrieving login cache...
+16:08:66 19/08/2022	LAWS --> Retrieving login cache...
+16:08:77 19/08/2022	LAWS --> Retrieving login cache...
+16:08:33 19/08/2022	LAWS --> Retrieving login cache...
+16:08:09 19/08/2022	LAWS --> Retrieving login cache...
+16:08:76 19/08/2022	LAWS --> Retrieving login cache...
+16:08:40 19/08/2022	LAWS --> Retrieving login cache...
+16:08:89 19/08/2022	Login Request:
+16:08:80 19/08/2022	LAWS --> Retrieving login cache...
+16:08:84 19/08/2022	p4 clients -u acranch-perforce
+16:08:85 19/08/2022	p4 users
+16:08:85 19/08/2022	p4 depots -u acranch-perforce
+16:08:86 19/08/2022	p4 groups -u acranch-perforce
+16:08:71 19/08/2022	Service --> Retrieving All Groups for User: undefined
+16:08:71 19/08/2022	Groups -->
+		{"code":"stat","user":"acranch-perforce","group":"LA-Admin","isSubGroup":"0","isOwner":"1","isUser":"1","maxResults":"0","maxScanRows":"0","maxLockTime":"0","maxOpenFiles":"0","timeout":"43200","passTimeout":"0"}
+		{"code":"stat","user":"acranch-perforce","group":"LA-Internal","isSubGroup":"0","isOwner":"1","isUser":"1","maxResults":"0","maxScanRows":"0","maxLockTime":"0","maxOpenFiles":"0","timeout":"43200","passTimeout":"0"}
+16:08:74 19/08/2022	Service --> Retrieving All Workspaces for User: undefined
+16:08:74 19/08/2022	Clients -->{"code":"stat","client":"DESKTOP-P2BD4IN","Update":"1644314743","Access":"1659561971","Owner":"acranch-perforce","Options":"noallwrite noclobber nocompress unlocked nomodtime rmdir","SubmitOptions":"leaveunchanged","LineEnd":"local","Root":"c:\\_LA.Repositories\\_Development\\_Development.Workstation\\LAPerforceReposync\\bin\\Debug\\netcoreapp3.1","Host":"DESKTOP-P2BD4IN","Type":"writeable","Backup":"enable","Description":"Created by acranch-perforce.\n"}
+{"code":"stat","client":"acranch-perforce.DESKTOP-OF7JFMM._Development","Update":"1646132780","Access":"1646132780","Owner":"acranch-perforce","Options":"allwrite noclobber nocompress unlocked nomodtime rmdir","SubmitOptions":"leaveunchanged","LineEnd":"local","Root":"C:/_LA.Repositories/_Development","Host":"DESKTOP-OF7JFMM","Type":"writeable","Backup":"enable","Description":"Created by acranch-perforce.\n"}
+{"code":"stat","client":"acranch-perforce.DESKTOP-P2BD4IN.LADUS0009","Update":"1659669602","Access":"1660735388","Owner":"acranch-perforce","Options":"noallwrite noclobber nocompress unlocked nomodtime normdir","SubmitOptions":"submitunchanged","LineEnd":"local","Root":"C:/_LA.Repositories/LADUS0009","Host":"DESKTOP-P2BD4IN","Type":"writeable","Backup":"enable","Description":""}
+{"code":"stat","client":"acranch-perforce.DESKTOP-P2BD4IN.LADUS0019","Update":"1642561415","Access":"1660689872","Owner":"acranch-perforce","Options":"allwrite noclobber nocompress unlocked nomodtime rmdir","SubmitOptions":"leaveunchanged","LineEnd":"local","Root":"C:/_LA.Repositories/LADUS0019","Host":"DESKTOP-P2BD4IN","Type":"writeable","Backup":"enable","Description":"Created by acranch-perforce.\n"}
+{"code":"stat","client":"acranch-perforce.DESKTOP-P2BD4IN.LADUS0020","Update":"1643443902","Access":"1660178809","Owner":"acranch-perforce","Options":"allwrite noclobber nocompress unlocked nomodtime rmdir","SubmitOptions":"leaveunchanged","LineEnd":"local","Root":"C:/_LA.Repositories/LADUS0020","Host":"DESKTOP-P2BD4IN","Type":"writeable","Backup":"enable","Description":"Created by acranch-perforce.\n"}
+{"code":"stat","client":"acranch-perforce.DESKTOP-P2BD4IN.LADUS0021","Update":"1659671544","Access":"1660729799","Owner":"acranch-perforce","Options":"noallwrite noclobber nocompress unlocked nomodtime normdir","SubmitOptions":"submitunchanged","LineEnd":"local","Root":"C:/_LA.Repositories/LADUS0021","Host":"DESKTOP-P2BD4IN","Type":"writeable","Backup":"enable","Description":""}
+{"code":"stat","client":"acranch-perforce.DESKTOP-P2BD4IN.LADUS0022","Update":"1645050114","Access":"1659671709","Owner":"acranch-perforce","Options":"allwrite noclobber nocompress unlocked nomodtime rmdir","SubmitOptions":"leaveunchanged","LineEnd":"local","Root":"C:/_LA.Repositories/LADUS0022","Host":"DESKTOP-P2BD4IN","Type":"writeable","Backup":"enable","Description":"Created by acranch-perforce.\n"}
+{"code":"stat","client":"acranch-perforce.DESKTOP-P2BD4IN.LADUS0024","Update":"1659671224","Access":"1659671512","Owner":"acranch-perforce","Options":"noallwrite noclobber nocompress unlocked nomodtime normdir","SubmitOptions":"submitunchanged","LineEnd":"local","Root":"C:/_LA.Repositories/LADUS0024","Host":"DESKTOP-P2BD4IN","Type":"writeable","Backup":"enable","Description":""}
+{"code":"stat","client":"acranch-perforce.DESKTOP-P2BD4IN.LADUS0025","Update":"1647832527","Access":"1660717420","Owner":"acranch-perforce","Options":"allwrite noclobber nocompress unlocked nomodtime rmdir","SubmitOptions":"leaveunchanged","LineEnd":"local","Root":"C:/_LA.Repositories/LADUS0025","Host":"DESKTOP-P2BD4IN","Type":"writeable","Backup":"enable","Description":"Created by acranch-perforce.\n"}
+{"code":"stat","client":"acranch-perforce.DESKTOP-P2BD4IN.LADUS0026","Update":"1660029664","Access":"1660029649","Owner":"acranch-perforce","Options":"noallwrite noclobber nocompress unlocked nomodtime normdir","SubmitOptions":"submitunchanged","LineEnd":"local","Root":"C:/_LA.Repositories/LADUS0026","Host":"DESKTOP-P2BD4IN","Type":"writeable","Backup":"enable","Description":""}
+{"code":"stat","client":"acranch-perforce.DESKTOP-P2BD4IN.LAIU0001","Update":"1660720115","Access":"1660784075","Owner":"acranch-perforce","Options":"noallwrite noclobber nocompress unlocked nomodtime normdir","SubmitOptions":"submitunchanged","LineEnd":"local","Root":"C:/_LA.Repositories/LAIU0001","Host":"DESKTOP-P2BD4IN","Type":"writeable","Backup":"enable","Description":""}
+{"code":"stat","client":"acranch-perforce.DESKTOP-P2BD4IN.LAL","Update":"1643169821","Access":"1659589095","Owner":"acranch-perforce","Options":"allwrite noclobber nocompress unlocked nomodtime rmdir","SubmitOptions":"leaveunchanged","LineEnd":"local","Root":"C:/_LA.Repositories/LAL","Host":"DESKTOP-P2BD4IN","Type":"writeable","Backup":"enable","Description":"Created by acranch-perforce.\n"}
+{"code":"stat","client":"acranch-perforce.DESKTOP-P2BD4IN.LAL0002","Update":"1642288816","Access":"1659589631","Owner":"acranch-perforce","Options":"allwrite noclobber nocompress unlocked nomodtime rmdir","SubmitOptions":"leaveunchanged","LineEnd":"local","Root":"C:/_LA.Repositories/LAL0002","Host":"DESKTOP-P2BD4IN","Type":"writeable","Backup":"enable","Description":"Created by acranch-perforce.\n"}
+{"code":"stat","client":"acranch-perforce.DESKTOP-P2BD4IN.LAL0003","Update":"1643229904","Access":"1659589097","Owner":"acranch-perforce","Options":"allwrite noclobber nocompress unlocked nomodtime rmdir","SubmitOptions":"leaveunchanged","LineEnd":"local","Root":"C:/_LA.Repositories/LAL0003","Host":"DESKTOP-P2BD4IN","Type":"writeable","Backup":"enable","Description":"Created by acranch-perforce.\n"}
+{"code":"stat","client":"acranch-perforce.DESKTOP-P2BD4IN.LAL0004","Update":"1659671761","Access":"1659671757","Owner":"acranch-perforce","Options":"noallwrite noclobber nocompress unlocked nomodtime normdir","SubmitOptions":"submitunchanged","LineEnd":"local","Root":"C:/_LA.Repositories/LAL0004","Host":"DESKTOP-P2BD4IN","Type":"writeable","Backup":"enable","Description":""}
+{"code":"stat","client":"acranch-perforce.DESKTOP-P2BD4IN.LAL0006","Update":"1659671614","Access":"1659689965","Owner":"acranch-perforce","Options":"noallwrite noclobber nocompress unlocked nomodtime normdir","SubmitOptions":"submitunchanged","LineEnd":"local","Root":"C:\\_LA.Repositories\\laworkstationsync","Host":"DESKTOP-P2BD4IN","Type":"writeable","Backup":"enable","Description":""}
+{"code":"stat","client":"acranch-perforce.DESKTOP-P2BD4IN.LAL0008","Update":"1655775310","Access":"1659589098","Owner":"acranch-perforce","Options":"allwrite noclobber nocompress unlocked nomodtime rmdir","SubmitOptions":"leaveunchanged","LineEnd":"local","Root":"C:/_LA.Repositories/LAL0008","Host":"DESKTOP-P2BD4IN","Type":"writeable","Backup":"enable","Description":"Created by acranch-perforce.\n"}
+{"code":"stat","client":"acranch-perforce.DESKTOP-P2BD4IN.LAT0003","Update":"1642025885","Access":"1660785737","Owner":"acranch-perforce","Options":"allwrite noclobber nocompress unlocked nomodtime rmdir","SubmitOptions":"leaveunchanged","LineEnd":"local","Root":"C:/_LA.Repositories/LAT0003","Host":"DESKTOP-P2BD4IN","Type":"writeable","Backup":"enable","Description":"Created by acranch-perforce.\n"}
+{"code":"stat","client":"acranch-perforce.DESKTOP-P2BD4IN.LAT0004","Update":"1659064805","Access":"1660729846","Owner":"acranch-perforce","Options":"allwrite noclobber nocompress unlocked nomodtime rmdir","SubmitOptions":"leaveunchanged","LineEnd":"local","Root":"C:/_LA.Repositories/LAT0004","Host":"DESKTOP-P2BD4IN","Type":"writeable","Backup":"enable","Description":"Created by acranch-perforce.\n"}
+{"code":"stat","client":"acranch-perforce.DESKTOP-P2BD4IN.Resources","Update":"1644299280","Access":"1659671712","Owner":"acranch-perforce","Options":"allwrite noclobber nocompress unlocked nomodtime rmdir","SubmitOptions":"leaveunchanged","LineEnd":"local","Root":"C:/_LA.Repositories/Resources","Host":"DESKTOP-P2BD4IN","Type":"writeable","Backup":"enable","Description":"Created by acranch-perforce.\n"}
+{"code":"stat","client":"acranch-perforce.DESKTOP-P2BD4IN._Development","Update":"1642378024","Access":"1659590999","Owner":"acranch-perforce","Options":"noallwrite noclobber nocompress unlocked nomodtime rmdir","SubmitOptions":"leaveunchanged","LineEnd":"local","Root":"C:\\_LA.Repositories\\_Development","Host":"DESKTOP-P2BD4IN","Type":"writeable","Backup":"enable","Description":"Created by acranch-perforce.\n"}
+{"code":"stat","client":"acranch-perforce.LADUS0019.Play","Update":"1637633778","Access":"1660689883","Owner":"acranch-perforce","Options":"noallwrite noclobber nocompress unlocked nomodtime rmdir","SubmitOptions":"leaveunchanged","LineEnd":"local","Root":"C:\\_LA.Repositories\\LADUS0019.Play","Host":"DESKTOP-P2BD4IN","Type":"writeable","Backup":"enable","Description":"Created by acranch-perforce.\n"}
+{"code":"stat","client":"acranch-perforce.LQABNEDTP00008.LAL0003","Update":"1643229175","Access":"1643229165","Owner":"acranch-perforce","Options":"allwrite noclobber nocompress unlocked nomodtime rmdir","SubmitOptions":"leaveunchanged","LineEnd":"local","Root":"C:/_LA.Repositories/LAL0003","Host":"LQABNEDTP00008","Type":"writeable","Backup":"enable","Description":"Created by acranch-perforce.\n"}
+{"code":"stat","client":"acranch-perforce.LQABNEDTP00008.LAL0004","Update":"1643614061","Access":"1643616097","Owner":"acranch-perforce","Options":"allwrite noclobber nocompress unlocked nomodtime rmdir","SubmitOptions":"leaveunchanged","LineEnd":"local","Root":"C:/_LA.Repositories/LAL0004","Host":"LQABNEDTP00008","Type":"writeable","Backup":"enable","Description":"Created by acranch-perforce.\n"}
+{"code":"stat","client":"acranch-perforce.S-WS-0018.LADUS0009","Update":"1643231713","Access":"1660735399","Owner":"acranch-perforce","Options":"allwrite noclobber nocompress unlocked nomodtime rmdir","SubmitOptions":"leaveunchanged","LineEnd":"local","Root":"C:/_LA.Repositories/LADUS0009","Host":"S-WS-0018","Type":"writeable","Backup":"enable","Description":"Created by acranch-perforce.\n"}
+{"code":"stat","client":"acranch-perforce.S-WS-0018.LADUS0019","Update":"1647927282","Access":"1659680456","Owner":"acranch-perforce","Options":"allwrite noclobber nocompress unlocked nomodtime rmdir","SubmitOptions":"leaveunchanged","LineEnd":"local","Root":"C:/_LA.Repositories/LADUS0019","Host":"S-WS-0018","Type":"writeable","Backup":"enable","Description":"Created by acranch-perforce.\n"}
+{"code":"stat","client":"acranch-perforce.S-WS-0018.LADUS0020","Update":"1643938816","Access":"1655715401","Owner":"acranch-perforce","Options":"allwrite noclobber nocompress unlocked nomodtime rmdir","SubmitOptions":"leaveunchanged","LineEnd":"local","Root":"C:/_LA.Repositories/LADUS0020","Host":"S-WS-0018","Type":"writeable","Backup":"enable","Description":"Created by acranch-perforce.\n"}
+{"code":"stat","client":"acranch-perforce.S-WS-0018.LADUS0022","Update":"1643268475","Access":"1656297581","Owner":"acranch-perforce","Options":"allwrite noclobber nocompress unlocked nomodtime rmdir","SubmitOptions":"leaveunchanged","LineEnd":"local","Root":"C:/_LA.Repositories/LADUS0022","Host":"S-WS-0018","Type":"writeable","Backup":"enable","Description":"Created by acranch-perforce.\n"}
+{"code":"stat","client":"acranch-perforce.S-WS-0018.LADUS0025","Update":"1647919472","Access":"1659077839","Owner":"acranch-perforce","Options":"allwrite noclobber nocompress unlocked nomodtime rmdir","SubmitOptions":"leaveunchanged","LineEnd":"local","Root":"C:/_LA.Repositories/LADUS0025","Host":"S-WS-0018","Type":"writeable","Backup":"enable","Description":"Created by acranch-perforce.\n"}
+{"code":"stat","client":"acranch-perforce.S-WS-0018._Development","Update":"1643245069","Access":"1643259853","Owner":"acranch-perforce","Options":"allwrite noclobber nocompress unlocked nomodtime rmdir","SubmitOptions":"leaveunchanged","LineEnd":"local","Root":"C:/_LA.Repositories/_Development","Host":"S-WS-0018","Type":"writeable","Backup":"enable","Description":"Created by acranch-perforce.\n"}
+{"code":"stat","client":"acranch-perforce.secure.LADUS0019.Play","Update":"1637708371","Access":"1659682413","Owner":"acranch-perforce","Options":"noallwrite noclobber nocompress unlocked nomodtime rmdir","SubmitOptions":"leaveunchanged","LineEnd":"local","Root":"C:\\_LA.Repositories\\LADUS0019.Play","Host":"S-WS-0018","Type":"writeable","Backup":"enable","Description":"Created by acranch-perforce.\n"}
+{"code":"stat","client":"acranch.secure-perforce.LADUS0021.MagicMoments","Update":"1636964411","Access":"1660729810","Owner":"acranch-perforce","Options":"noallwrite noclobber nocompress unlocked nomodtime normdir","SubmitOptions":"submitunchanged","LineEnd":"local","Root":"C:\\_LA.Repositories\\LADUS0021.MagicMoments","Host":"S-WS-0018","Type":"writeable","Backup":"enable","Description":"Created by acranch-perforce.\n"}
+16:08:74 19/08/2022	Service --> Retrieving All Depots for User: undefined
+16:08:75 19/08/2022	Depots -->{"code":"stat","name":"LADUS0009.WhiteRabbit.Assets","time":"1641943989","type":"local","map":"LADUS0009.WhiteRabbit.Assets/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"LADUS0009.WhiteRabbit.Shots","time":"1641944000","type":"local","map":"LADUS0009.WhiteRabbit.Shots/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"LADUS0009.WhiteRabbit.StudioLibrary","time":"1641944012","type":"local","map":"LADUS0009.WhiteRabbit.StudioLibrary/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"LADUS0009.WhiteRabbit.Unity","time":"1657771001","type":"local","map":"LADUS0009.WhiteRabbit.Unity/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"LADUS0019.Play.Unity","time":"1637633674","type":"local","map":"LADUS0019.Play.Unity/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"LADUS0019.Play.Unreal","time":"1642557596","type":"local","map":"LADUS0019.Play.Unreal/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"LADUS0020.BossBattle.Assets","time":"1641942872","type":"local","map":"LADUS0020.BossBattle.Assets/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"LADUS0020.BossBattle.Exports","time":"1642452611","type":"local","map":"LADUS0020.BossBattle.Exports/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"LADUS0020.BossBattle.Renders","time":"1642552265","type":"local","map":"LADUS0020.BossBattle.Renders/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"LADUS0020.BossBattle.Shots","time":"1641942886","type":"local","map":"LADUS0020.BossBattle.Shots/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"LADUS0020.BossBattle.StudioLibrary","time":"1641943964","type":"local","map":"LADUS0020.BossBattle.StudioLibrary/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"LADUS0020.BossBattle.Theatre","time":"1642387973","type":"local","map":"LADUS0020.BossBattle.Theatre/...","desc":"Created by acranch-perforce.\n"}
+{"code":"stat","name":"LADUS0020.BossBattle.Unreal","time":"1635149552","type":"local","map":"LADUS0020.BossBattle.Unreal/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"LADUS0021.Magic.Assets","time":"1653973702","type":"local","map":"LADUS0021.Magic.Assets/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"LADUS0021.Magic.Shots","time":"1653973710","type":"local","map":"LADUS0021.Magic.Shots/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"LADUS0021.Magic.Unity","time":"1636700466","type":"local","map":"LADUS0021.Magic.Unity/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"LADUS0021.Unity","time":"1634623881","type":"local","map":"LADUS0021.Unity/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"LADUS0022.DisneyPals.Assets","time":"1643268173","type":"local","map":"LADUS0022.DisneyPals.Assets/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"LADUS0022.DisneyPals.Exports","time":"1643268141","type":"local","map":"LADUS0022.DisneyPals.Exports/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"LADUS0022.DisneyPals.Shots","time":"1643268122","type":"local","map":"LADUS0022.DisneyPals.Shots/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"LADUS0022.DisneyPals.StudioLibrary","time":"1643268159","type":"local","map":"LADUS0022.DisneyPals.StudioLibrary/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"LADUS0022.DisneyPals.Unity","time":"1643268189","type":"local","map":"LADUS0022.DisneyPals.Unity/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"LADUS0024.SteamBoatWillie.Unity","time":"1640053849","type":"local","map":"LADUS0024.SteamBoatWillie.Unity/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"LADUS0025.DisneyNFTs.Assets","time":"1646629625","type":"local","map":"LADUS0025.DisneyNFTs.Assets/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"LADUS0025.DisneyNFTs.Exports","time":"1647825946","type":"local","map":"LADUS0025.DisneyNFTs.Exports/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"LADUS0025.DisneyNFTs.Shots","time":"1646629604","type":"local","map":"LADUS0025.DisneyNFTs.Shots/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"LADUS0025.DisneyNFTs.Unity","time":"1646629641","type":"local","map":"LADUS0025.DisneyNFTs.Unity/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"LADUS0026.PullupsRapunzel.Assets","time":"1653974674","type":"local","map":"LADUS0026.PullupsRapunzel.Assets/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"LADUS0026.PullupsRapunzel.Shots","time":"1653974695","type":"local","map":"LADUS0026.PullupsRapunzel.Shots/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"LAIU0001.QaiQai.Unreal","time":"1660712813","type":"local","map":"LAIU0001.QaiQai.Unreal/...","desc":"Created by acranch-perforce.\n"}
+{"code":"stat","name":"LAL.Library.StudioLibrary","time":"1643165477","type":"local","map":"LAL.Library.StudioLibrary/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"LAL.Library.UnityTemplate","time":"1643165516","type":"local","map":"LAL.Library.UnityTemplate/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"LAL0001.MissionToMars.Unity","time":"1638743578","type":"local","map":"LAL0001.MissionToMars.Unity/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"LAL0002.Confidentiality.Unity","time":"1635033226","type":"local","map":"LAL0002.Confidentiality.Unity/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"LAL0003.OceanDetective.Renders","time":"1646610462","type":"local","map":"LAL0003.OceanDetective.Renders/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"LAL0003.OceanDetective.Shots","time":"1643165197","type":"local","map":"LAL0003.OceanDetective.Shots/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"LAL0003.OceanDetective.Unity","time":"1643165245","type":"local","map":"LAL0003.OceanDetective.Unity/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"LAL0004.AnimalHavoc.Renders","time":"1646610489","type":"local","map":"LAL0004.AnimalHavoc.Renders/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"LAL0004.AnimalHavoc.Shots","time":"1643165353","type":"local","map":"LAL0004.AnimalHavoc.Shots/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"LAL0004.AnimalHavoc.Unity","time":"1643165343","type":"local","map":"LAL0004.AnimalHavoc.Unity/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"LAL0005.Sustainability.Renders","time":"1637195336","type":"local","map":"LAL0005.Sustainability.Renders/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"LAL0005.Sustainability.Unity","time":"1637195296","type":"local","map":"LAL0005.Sustainability.Unity/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"LAL0006.Packaging.Unity","time":"1635033355","type":"local","map":"LAL0006.Packaging.Unity/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"LAL0007.LegoMe.Unity","time":"1636927532","type":"local","map":"LAL0007.LegoMe.Unity/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"LAL0008.Tryvitising.Assets","time":"1655186715","type":"local","map":"LAL0008.Tryvitising.Assets/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"LAL0008.Tryvitising.Renders","time":"1655770710","type":"local","map":"LAL0008.Tryvitising.Renders/...","desc":"Created by acranch-perforce.\n"}
+{"code":"stat","name":"LAL0008.Tryvitising.Shots","time":"1655186706","type":"local","map":"LAL0008.Tryvitising.Shots/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"LAL0008.Tryvitising.Unity","time":"1655186722","type":"local","map":"LAL0008.Tryvitising.Unity/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"LAT0003.Testing.General","time":"1639627215","type":"local","map":"LAT0003.Testing.General/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"LAT0004.Testing.Unreal","time":"1659064662","type":"local","map":"LAT0004.Testing.Unreal/...","desc":"Created by acranch-perforce.\n"}
+{"code":"stat","name":"Resources.Unity","time":"1635036264","type":"local","map":"Resources.Unity/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"Resources.Unreal","time":"1635036280","type":"local","map":"Resources.Unreal/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"_Development.Workstation","time":"1640206368","type":"local","map":"_Development.Workstation/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"_Environment.Installers","time":"1641990269","type":"local","map":"_Environment.Installers/...","desc":"Created by acranch-perforce.\n"}
+{"code":"stat","name":"_Environment.Maya.2018","time":"1640206302","type":"local","map":"_Environment.Maya.2018/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"_Environment.Maya.2022","time":"1640206284","type":"local","map":"_Environment.Maya.2022/...","desc":"Created by perforce.\n"}
+{"code":"stat","name":"_Environment.Nuke","time":"1644020050","type":"local","map":"_Environment.Nuke/...","desc":"Created by acranch-perforce.\n"}
+{"code":"stat","name":"_Environment.Resources","time":"1641990234","type":"local","map":"_Environment.Resources/...","desc":"Created by acranch-perforce.\n"}
+16:08:74 19/08/2022	Users -->{"code":"stat","User":"acranch-perforce","Update":"2021/10/19","Access":"2022/08/19","FullName":"Adam Cranch","Email":"acranch@liquidanimation.com","Type":"standard","Password":"enabled"}
+{"code":"stat","User":"amahdy-perforce","Update":"2022/02/01","Access":"2022/03/01","FullName":"Abo Mahdy","Email":"amahdy@liquidanimation.com","Type":"standard","Password":"enabled"}
+{"code":"stat","User":"amai-perforce","Update":"2022/08/15","Access":"2022/08/15","FullName":"Autumn Mai","Email":"amai@liquidanimation.com","Type":"standard","Password":"enabled"}
+{"code":"stat","User":"arosa-perforce","Update":"2022/01/25","Access":"2022/08/19","FullName":"Alicia Rosa","Email":"arosa@liquidanimation.com","Type":"standard","Password":"enabled"}
+{"code":"stat","User":"asingh-perforce","Update":"2022/02/01","Access":"2022/03/25","FullName":"Akansha Singh","Email":"asingh@liquidanimation.com","Type":"standard","Password":"enabled"}
+{"code":"stat","User":"cloney-perforce","Update":"2021/10/19","Access":"2022/08/05","FullName":"Cameron Loney","Email":"cloney@liquidanimation.com","Type":"standard","Password":"enabled"}
+{"code":"stat","User":"emcbride-perforce","Update":"2021/11/29","Access":"2022/06/10","FullName":"Ethan Mcbride","Email":"emcbride@liquidanimation.com","Type":"standard","Password":"enabled"}
+{"code":"stat","User":"fpleasance-perforce","Update":"2021/10/19","Access":"2022/08/19","FullName":"Fynlay Pleasamce","Email":"fpleasance@liquidanimation.com","Type":"standard","Password":"enabled"}
+{"code":"stat","User":"gkrumins-perforce","Update":"2021/12/14","Access":"2022/08/19","FullName":"Garen Krumins","Email":"gkrumins@liquidanimation.com","Type":"standard","Password":"enabled"}
+{"code":"stat","User":"gtiwari-perforce","Update":"2022/02/01","Access":"2022/04/08","FullName":"Ganesh Tiwari","Email":"gtiwari@liquidanimtion.com","Type":"standard","Password":"enabled"}
+{"code":"stat","User":"hmelo-perforce","Update":"2022/02/01","Access":"2022/07/02","FullName":"Henrique Melo","Email":"hmelo@liquidanimation.com","Type":"standard","Password":"enabled"}
+{"code":"stat","User":"jbarillas-perforce","Update":"2021/11/18","Access":"2022/06/24","FullName":"Jose Barillas","Email":"jbarillas@liquidanimation.com","Type":"standard","Password":"enabled"}
+{"code":"stat","User":"jchamp-perforce","Update":"2021/10/28","Access":"2022/08/17","FullName":"Joel Champ","Email":"jchamp@liquidanimation.com","Type":"standard","Password":"enabled"}
+{"code":"stat","User":"jclare-perforce","Update":"2022/01/26","Access":"2022/04/14","FullName":"Jack Clare","Email":"jclare@liquidanimation.com","Type":"standard","Password":"enabled"}
+{"code":"stat","User":"jfwannan-perforce","Update":"2022/01/17","Access":"2022/08/19","FullName":"James Fearn-Wannan","Email":"jfwannan@liquidanimation.com","Type":"standard","Password":"enabled"}
+{"code":"stat","User":"kkheong-perforce","Update":"2022/02/01","Access":"2022/05/20","FullName":"Keng Kheong","Email":"kkheong@liquidanimation.com","Type":"standard","Password":"enabled"}
+{"code":"stat","User":"liquid-perforce","Update":"2022/08/05","Access":"2022/08/19","FullName":"Liquid User","Email":"technical@liquidanimation.com","Type":"standard","Password":"enabled"}
+{"code":"stat","User":"mbarber-perforce","Update":"2022/06/02","Access":"2022/08/19","FullName":"Mark Barber","Email":"mbarber@liquidanimation.com","Type":"standard","Password":"enabled"}
+{"code":"stat","User":"mgarcia-perforce","Update":"2022/01/12","Access":"2022/08/19","FullName":"Mario Garcia","Email":"mgarcia@liquidanimation.com","Type":"standard","Password":"enabled"}
+{"code":"stat","User":"nbroner-perforce","Update":"2022/03/10","Access":"2022/07/01","FullName":"Nicolas Broner","Email":"nboner@liquidanimation.com","Type":"standard","Password":"enabled"}
+{"code":"stat","User":"ncutler-perforce","Update":"2022/01/11","Access":"2022/08/18","FullName":"Naomi Cutler","Email":"ncutler@liquidanimation.com","Type":"standard","Password":"enabled"}
+{"code":"stat","User":"perforce","Update":"2021/09/30","Access":"2022/08/19","FullName":"perforce","Email":"perforce@pkrvmhzd5n4g6k7","Type":"standard","Password":"enabled"}
+{"code":"stat","User":"rakhtar-perforce","Update":"2022/02/01","Access":"2022/04/28","FullName":"Rashid Akhtar","Email":"rakhtar@liquidanimation.com","Type":"standard","Password":"enabled"}
+{"code":"stat","User":"rokeefe-perforce","Update":"2022/01/17","Access":"2022/07/04","FullName":"Rebecca Viner","Email":"rokeefe@liquidanimation.com","Type":"standard","Password":"enabled"}
+{"code":"stat","User":"rsharma-perforce","Update":"2022/01/26","Access":"2022/07/01","FullName":"Rajeev Sharma","Email":"rsharma@liquidanimation.com","Type":"standard","Password":"enabled"}
+{"code":"stat","User":"rwalker-perforce","Update":"2022/01/26","Access":"2022/07/27","FullName":"Rachael Walker","Email":"rwalker@liquidanimation.com","Type":"standard","Password":"enabled"}
+{"code":"stat","User":"rwong-perforce","Update":"2022/02/01","Access":"2022/05/31","FullName":"Raymond Wong","Email":"rwong@liquidanimation.com","Type":"standard","Password":"enabled"}
+{"code":"stat","User":"sgedge-perforce","Update":"2021/12/08","Access":"2022/07/20","FullName":"Sheree Gedge","Email":"sheree@liquidanimation.com","Type":"standard","Password":"enabled"}
+{"code":"stat","User":"stat-perforce","Update":"2022/02/01","Access":"2022/05/26","FullName":"Swee Tat","Email":"stat@liquidanimation.com","Type":"standard","Password":"enabled"}
+{"code":"stat","User":"syafiq-perforce","Update":"2022/02/01","Access":"2022/06/01","FullName":"Syafiq","Email":"syafiq@liquidanimation.com","Type":"standard","Password":"enabled"}
+{"code":"stat","User":"tclark-perforce","Update":"2021/12/15","Access":"2022/06/30","FullName":"Tyler Clark","Email":"tclark@liquidanimation.com","Type":"standard","Password":"enabled"}
+{"code":"stat","User":"wmaldonado-perforce","Update":"2022/01/26","Access":"2022/08/19","FullName":"William Maldonado","Email":"wmaldonado@liquidanimation.com","Type":"standard","Password":"enabled"}
+{"code":"stat","User":"yhun-perforce","Update":"2022/02/01","Access":"2022/06/01","FullName":"Yeu Hun","Email":"yhun@liquidanimation.com","Type":"standard","Password":"enabled"}

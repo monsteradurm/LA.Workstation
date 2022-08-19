@@ -1,0 +1,16 @@
+2022-08-19 15:43:50 - Starting C:\Program Files\nodejs\node.exe  --harmony c:\Users\acran\AppData\Roaming\npm\node_modules\node-windows\lib\wrapper.js --file C:\_LA.Workstation\_LA.Environment.Sync\main\timer.js --scriptoptions= --log "LA.Environment.Sync wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2022-08-19 15:43:50 - Started 4648
+2022-08-19 15:47:02 - Stopping laenvironmentsync.exe
+2022-08-19 15:47:02 - ProcessKill 4648
+2022-08-19 15:47:02 - Found child process: 4692 Name: conhost.exe
+2022-08-19 15:47:02 - Found child process: 15068 Name: node.exe
+2022-08-19 15:47:02 - Stopping process 4692
+2022-08-19 15:47:02 - Send SIGINT 4692
+2022-08-19 15:47:02 - SIGINT to 4692 failed - Killing as fallback
+2022-08-19 15:47:02 - Stopping process 15068
+2022-08-19 15:47:02 - Send SIGINT 15068
+2022-08-19 15:47:02 - SIGINT to 15068 failed - Killing as fallback
+2022-08-19 15:47:02 - Stopping process 4648
+2022-08-19 15:47:02 - Send SIGINT 4648
+2022-08-19 15:47:02 - SIGINT to 4648 failed - Killing as fallback
+2022-08-19 15:47:02 - Finished laenvironmentsync.exe
